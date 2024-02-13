@@ -136,14 +136,14 @@ class PlayList {
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-		 if(maxSize>=size+other.getMaxSize()){
-			 size+=other.getSize();
+		  int newSize=size+other.getSize();
+		 if(maxSize>=newSize){
 			 int count=0;
-			 for(int i=size; i<size+other.getSize();i++){
+			 size+=other.getSize();
+			 for(int i=size; i<newSize;i++){
 				 tracks[i]=other.getTrack(count);
 				 count++;
 			 }
-			 size+=other.getSize();
 		 }
 				 
        
@@ -178,7 +178,6 @@ class PlayList {
 
     /** Sorts this list by increasing duration order: Tracks with shorter
      *  durations will appear first. The sort is done in-place. In other words,
-     *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
 		for(int i=0; i<size; i++) { 
