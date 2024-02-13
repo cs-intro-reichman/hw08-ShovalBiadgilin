@@ -86,10 +86,11 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        if (size==maxSize || i<0 || i>maxSize )
+        if (size==maxSize || i<0 ||i>size  )
 			return false; 
 	
-		for (int j=size-1; j>i; j--){ 
+		for (int j=size; j>i; j--){ 
+		    tracks[i]=track;
 			tracks[j]= tracks[j+1]; 
 		} 
 		size++ ;
@@ -155,16 +156,15 @@ class PlayList {
      *  If start is negative or greater than size - 1, returns -1.
      */
     private int minIndex(int start) {
-		if (start < 0 || start>size-1)
+		if (start < 0 || start>=size)
 			return -1;
 		int shortest=tracks[start].getDuration();
 		int index=start;
-        for (int j=start+1; j<maxSize-1; j++){
-			if (shortest>tracks[j+1].getDuration()){
-				shortest= tracks[j+1].getDuration();
-				index++;
-				
+        for (int j=start+1; j<size; j++){
+			if (shortest>tracks[j].getDuration()){
+				shortest= tracks[j].getDuration();
 			}
+			index++;
 		}
         return index ;
     }
@@ -181,7 +181,6 @@ class PlayList {
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
 		int start=0;
-		int end=size;
 		for(int i=0; i<size; i++) { 
 			tracks[i]=tracks[minIndex(i)];
 		}
