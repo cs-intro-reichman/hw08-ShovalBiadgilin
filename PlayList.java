@@ -183,9 +183,11 @@ class PlayList {
     public void sortedInPlace() {
 		for(int i=0; i<size; i++) { 
 		    int min= minIndex(i);
+			if(min!=-1){
 		    Track temp=tracks[i];
 			tracks[i]=tracks[min];
 			tracks[min]= temp;
+			}
 			
 		}
 		
