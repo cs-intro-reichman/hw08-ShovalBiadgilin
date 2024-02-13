@@ -160,14 +160,15 @@ class PlayList {
 			return -1;
 		int shortest=tracks[start].getDuration();
 		int index=start;
-        for (int j=start+1; j<size; j++){
+        for (int j=start; j<size; j++){
 			if (shortest>tracks[j].getDuration()){
 				shortest= tracks[j].getDuration();
+				index=j;
 			}
-			index++;
 		}
         return index ;
     }
+	
 
     /** Returns the title of the shortest track in this list. 
      *  If the list is empty, returns null. */
@@ -180,13 +181,16 @@ class PlayList {
      *  rather than returning a new, sorted playlist, the method sorts
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-		int start=0;
 		for(int i=0; i<size; i++) { 
-			tracks[i]=tracks[minIndex(i)];
+		    int min= minIndex(i);
+		    Track temp=tracks[i];
+			tracks[i]=tracks[min];
+			tracks[min]= temp;
+			
 		}
+		
         // Uses the selection sort algorithm,  
         // calling the minIndex method in each iteration.
         //// replace this statement with your code
     }
 }
-
