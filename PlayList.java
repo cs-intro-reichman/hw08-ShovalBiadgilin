@@ -138,7 +138,7 @@ class PlayList {
 		 if(maxSize>=size+other.getMaxSize()){
 			 maxSize+=other.getMaxSize();
 			 int count=0;
-			 for(int i=size+1; i<maxSize;i++){
+			 for(int i=size; i<maxSize;i++){
 				 tracks[i]=other.getTrack(count);
 				 count++;
 			 }
