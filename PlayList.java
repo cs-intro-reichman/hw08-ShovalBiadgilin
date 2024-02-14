@@ -136,18 +136,20 @@ class PlayList {
      *  If the total size of both lists is too large, does nothing. */
     //// An elegant and terribly inefficient implementation.
      public void add(PlayList other) {
-		  int newSize=size+other.getSize();
-		 if(maxSize>=newSize){
-			 int count=0;
-			 size+=other.getSize();
-			 for(int i=size; i<newSize;i++){
-				 tracks[i]=other.getTrack(count);
-				 count++;
+			 if (maxSize-size>=other.getSize()){
+			 for(int i=0; i<other.getSize();i++){
+				 if(other.getTrack(i)!=null){ 
+				 tracks[size]=other.getTrack(i);
+				size++;
+				 }
 			 }
 		 }
 				 
        
     }
+	
+	
+	
 
     /** Returns the index in this list of the track that has the shortest duration,
      *  starting the search in location start. For example, if the durations are 
@@ -187,7 +189,6 @@ class PlayList {
 			tracks[i]=tracks[min];
 			tracks[min]= temp;
 			}
-			
 		}
 		
         // Uses the selection sort algorithm,  
@@ -195,3 +196,4 @@ class PlayList {
         //// replace this statement with your code
     }
 }
+
