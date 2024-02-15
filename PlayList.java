@@ -53,7 +53,7 @@ class PlayList {
 
     /** Removes the last track from this list. If the list is empty, does nothing. */
      public void removeLast() {
-         if(size!=0) 
+         if(size>=0) 
 			size--;
     }
     
@@ -86,13 +86,13 @@ class PlayList {
      *  is full, does nothing and returns false. Otherwise, inserts the track and
      *  returns true. */
     public boolean add(int i, Track track) {
-        if (size==maxSize || i<0 ||i>size  )
+        if (size>=maxSize || i<0 ||i>size  )
 			return false; 
 	
 		for (int j=size; j>i; j--){ 
-		    tracks[i]=track;
-			tracks[j]= tracks[j+1]; 
-		} 
+			tracks[j]= tracks[j-1]; 
+		}
+        tracks[i]=track;		
 		size++ ;
         return true;
     }
@@ -102,8 +102,8 @@ class PlayList {
      *  does nothing and returns -1. */
     public void remove(int i) {
 		
-		     if( i<size && i >=0 && size!=0){ 
-			for(int j=i; j<size; j++) {
+		     if( i<size && i >=0){ 
+			for(int j=i; j<size-1; j++) {
 				tracks[j]=tracks[j+1];
 			}
 			 }
@@ -178,9 +178,8 @@ class PlayList {
      *  durations will appear first. The sort is done in-place. In other words,
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-		  int min= minIndex(0);
-		for(int i=1; i<size; i++) { 
-			   min= minIndex(i);
+		for(int i=0; i<size; i++) { 
+			 int min= minIndex(i);
 			if(min!=-1){
 		    Track temp=tracks[i];
 			tracks[i]=tracks[min];
