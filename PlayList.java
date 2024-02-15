@@ -158,8 +158,8 @@ class PlayList {
 			return -1;
 		int shortest=tracks[start].getDuration();
 		int index=start;
-        for (int j=start; j<size; j++){
-			if (shortest>tracks[j].getDuration()){
+        for (int j=start+1; j<size; j++){
+			if (shortest>tracks[j].getDuration() ){
 				shortest= tracks[j].getDuration();
 				index=j;
 			}
@@ -178,8 +178,9 @@ class PlayList {
      *  durations will appear first. The sort is done in-place. In other words,
      *  the list on which it was called (this list). */
     public void sortedInPlace() {
-		for(int i=0; i<size; i++) { 
-		    int min= minIndex(i);
+		  int min= minIndex(0);
+		for(int i=1; i<size; i++) { 
+			   min= minIndex(i);
 			if(min!=-1){
 		    Track temp=tracks[i];
 			tracks[i]=tracks[min];
