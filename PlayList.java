@@ -38,6 +38,7 @@ class PlayList {
        if(maxSize==size){
 		   return false;
 	   } 
+	    // #feedback - please write comments in English.
 	   tracks[size]=track;// מכניסה טראק חדש למערך ומגדילה את אורך המערך שיש בו איברים
 	   	   size++; 
 	   
@@ -48,6 +49,7 @@ class PlayList {
     //// For an efficient implementation, use StringBuilder.
     public String toString() {
         //// replace the following statement with your code
+	    // #feedback - you should have implemented this method.
         return "";
     }
 
@@ -71,6 +73,7 @@ class PlayList {
      *  If such a track is not found, returns -1. */
     public int indexOf(String title) {
      for (int i=0; i<size; i++){ 
+	     // #feedback - you should also ignore case (for example by converting everything to lower case)
 			if(tracks[i].getTitle().equals(title)){ 
 				return i;
 		}
@@ -114,6 +117,7 @@ class PlayList {
      *  If such a track is not found, or the list is empty, or the given index
      *  is negative or too big for this list, does nothing. */
     public void remove(String title) {
+	    // #feedback - you can use the indexOf method to find the index of the Track with this title, and then remove it.
         for ( int i=0; i<maxSize; i++) { 
 			if (tracks[i].getTitle().equals(title)){
 				remove(i);
@@ -124,6 +128,7 @@ class PlayList {
 
     /** Removes the first track from this list. If the list is empty, does nothing. */
     public void removeFirst() {
+	    // #feedback - you can call the above remove method with index 0.
         if(size>0){
 			for(int i=0; i<maxSize-1; i++){
 				tracks[i]=tracks[i+1];
